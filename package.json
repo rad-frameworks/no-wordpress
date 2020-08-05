@@ -1,6 +1,6 @@
 {
-  "name": "gmap-node-example",
-  "description": "gmap api test examples",
+  "name": "web-dynamify",
+  "description": "web-dynamify",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
