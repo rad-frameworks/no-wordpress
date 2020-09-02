@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var serveStatic = require('serve-static')
 var staticAssets = new serveStatic(__dirname+"/web", { 'index': ['default.html', 'default.htm'] })
+const fs = require("fs");
 
 var variablesFolder = __dirname+"/variables";
 
@@ -13,6 +14,19 @@ app.set('view engine', 'ejs');
 app.set('views',__dirname+"/web");
 // use .html instead .ejs
 app.engine('html', require('ejs').renderFile);
+
+/*Optional security*/
+if(process.env.ENABLE_SECURITY == "true"){
+
+  const basicAuth = require('express-basic-auth');
+  var userName = process.env.AUTH_USER;
+  var users = {};
+  users[userName] = process.env.AUTH_PASSWORD;
+  app.use(basicAuth({
+      users: users,
+      challenge: true
+  }))
+}
 
 
 /**
@@ -35,7 +49,12 @@ app.get('*', function(req, res, next) {
       var relativeResourcePath = req.url.substring(1,req.url.length);
       console.log("requested resource relative path: "+relativeResourcePath);
       var resourceVariablesPath = variablesFolder + "/"+ relativeResourcePath.replace(".html",".json")
-      res.render(relativeResourcePath, require(resourceVariablesPath));
+      if (fs.existsSync(resourceVariablesPath)) {
+        res.render(relativeResourcePath, require(resourceVariablesPath));
+      }else{
+        res.render(relativeResourcePath, {});
+      }
+
     }else{
       return staticAssets(req, res, next);
     }
