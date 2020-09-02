@@ -78,6 +78,18 @@ You just need to create a json file in the same location  but in **variables** f
 │       ├── contact.json
 ```
 
+# Security
+
+If you want to protect your prototype, just export these variables before the server start:
+
+```
+export ENABLE_SECURITY=true
+export AUTH_USER=noelle
+export AUTH_PASSWORD=changeme
+```
+
+And next time yo access to http://localhost:2708, a prompt will ask your for user and password
+
 # Technologies
 
 - nodejs
