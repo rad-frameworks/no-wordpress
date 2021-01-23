@@ -2,54 +2,57 @@
 
 ![logo](https://raw.githubusercontent.com/wiki/rad-frameworks/web-dynamify/logo-500x214.png)
 
-- You have an html template (free or premiun) and make it dynamic is your goal
-- Wordpress is not an option for you.
-- You have a minimal knowledge of html
-- Do you need to present a MVP or mockup to your boss, tomorrow?
-
-If the previous sentences are true this framework is for you :b
+An easy way to customize your html template.
 
 ---
 
-# Demo
+# Requirements
 
+- nodejs >= 8
+- Download or create some web page. https://templated.co has free templates ready to use.
+
+---
+
+# Run
+
+- Copy your html template into **web** folder. Your template must have at least the classic **index.html**
 - npm install
 - npm run dev
 
-Go to http://localhost:2708 and you will see **Javascript Platformer** as game title at the bottom of page.
-
-If you want to change it, go to variables/index.json and change the value of **gameTitle** to something like **Tetris**. Server will restart (thanks to npm run dev)
-
-Refresh page and your custom title will be rendered.
+Go to http://localhost:2708 and you will see your web page.
 
 ---
 
-# Make dynamic your own template
+# Customize template
 
-### 1. Html template
-
-Download your html template into web folder. An index.html must be exist.
-
-### 2. index.html variabilization
+### 1. Put variables in index.html
 
 Put the following code in any part of your index.html
+
 
 ```
 <%= my_var %>
 ```
-### 3. Variables
+A good choice is in <title> tag to learning purposes.
+
+
+```
+<title><%= my_var %></title>
+```
+
+This variable syntax is the part of nodejs framework called **EJS**. [Here](https://github.com/mde/ejs/blob/master/docs/syntax.md) more examples with ejs variables.
+
+### 2. create variables in json
 
 **web/index.html** is default associated to **variables/index.json** in variables folder. So in this file **variables/index.json**, create a var called **my_var**
 
 ```json
 {
-  "my_var": "my simple value"
+  "my_var": "my awesome page"
 }
 ```
 
-[Here](https://github.com/mde/ejs/blob/master/docs/syntax.md) more examples with ejs variables.
-
-If you started with **npm run dev**, just refresh the page and you will see **my simple value** in the web.
+If you started with **npm run dev**, just refresh the page and you will see **my awesome page** in the title of your web.
 
 ---
 
@@ -61,7 +64,7 @@ If you need to add dynamic content to another pages like :
 - Blog.html
 - /form/contact.html
 
-You just need to create a json file in the same location  but in **variables** folder:
+You just need to create its twins **variables** folder but with .json extension :
 
 ```
 ├── web/
@@ -96,13 +99,10 @@ And next time yo access to http://localhost:2708, a prompt will ask your for use
 - ejs
 - html
 
-# Acknowledgments
-
-- index.html demo : https://github.com/jakesgordon/javascript-tiny-platformer
-
 # Roadmap
 
 - more examples of ejs variables
+- external service instead local json
 
 # Contributors
 
@@ -120,6 +120,6 @@ Thanks goes to these wonderful people :
 </table>
 
 # License
-Web-Dynamify is open-sourced software licensed under the [GNU GPLv3 license](https://choosealicense.com/licenses/gpl-3.0/). Frameworks and libraries has it own licensed
+Web-Dynamify is open-sourced software licensed under the [MIT license](https://choosealicense.com/licenses/mit/). Frameworks and libraries has it own licenses
 
 Enjoy :)

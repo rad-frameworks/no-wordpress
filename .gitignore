@@ -1,1 +1,4 @@
 node_modules
+!/web
+/web/*
+!/web/.gitkeep
